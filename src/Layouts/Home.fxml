@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="main_Container" prefHeight="770.0" prefWidth="1545.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Home.HomeController">
+   <children>
+      <Label layoutX="1342.0" layoutY="14.0" text="Home" textFill="#fe9500">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="1.0" layoutX="1342.0" layoutY="40.0" stroke="#f50000" strokeType="INSIDE" width="180.0" />
+      <Label layoutX="525.0" layoutY="42.0" text="Welcome to Akram ">
+         <font>
+            <Font size="51.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="1.0" layoutX="520.0" layoutY="120.0" stroke="#f50000" strokeType="INSIDE" width="464.0" />
+      <Label layoutX="441.0" layoutY="234.0" text="Date :" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateLabel" layoutX="495.0" layoutY="229.0" prefHeight="40.0" prefWidth="258.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="230.0" text="Time :" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="timeLabel" contentDisplay="CENTER" layoutX="847.0" layoutY="225.0" prefHeight="40.0" prefWidth="258.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label contentDisplay="CENTER" layoutX="584.0" layoutY="118.0" prefHeight="40.0" prefWidth="321.0" text="Imitation Jewellery Shop Dashboard">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="344.0" layoutY="324.0" prefHeight="81.0" prefWidth="224.0" text="Quick Access">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="createInvoice" layoutX="344.0" layoutY="405.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="168.0" text="Create Invoice" />
+      <Button fx:id="saleReport" layoutX="344.0" layoutY="472.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="168.0" text="Sale Report" />
+      <Button fx:id="printOld" layoutX="344.0" layoutY="536.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="168.0" text="Print Old  Invoices" />
+      <Button fx:id="backup" layoutX="344.0" layoutY="603.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="168.0" text="Backup Database" />
+   </children>
+</AnchorPane>
