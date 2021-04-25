@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="770.0" prefWidth="1545.0" style="-fx-background-color: #ffffff;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Invoices.CreateInvoiceController">
+<AnchorPane prefHeight="770.0" prefWidth="1545.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Invoices.CreateInvoiceController">
    <children>
       <Label layoutX="15.0" layoutY="106.0" prefWidth="150.0" text="Customer Name">
          <font>
@@ -30,12 +30,12 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <TextField fx:id="customerName_Field" layoutX="15.0" layoutY="122.0" prefHeight="20.0" prefWidth="349.0">
+      <TextField fx:id="customerName_Field" layoutX="15.0" layoutY="122.0" prefHeight="28.0" prefWidth="410.0">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="contact_Field" layoutX="15.0" layoutY="169.0" prefHeight="20.0" prefWidth="349.0">
+      <TextField fx:id="contact_Field" layoutX="15.0" layoutY="169.0" prefHeight="23.0" prefWidth="409.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -155,7 +155,7 @@
          </font>
       </TextField>
       <Button fx:id="clearInvoiceButton" layoutX="1350.0" layoutY="209.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" style="-fx-background-color: #F0F0F0;" text="Clear Invoice" textFill="#4800ff" underline="true" />
-      <TextField fx:id="customerBalance" editable="false" layoutX="213.0" layoutY="75.0" prefHeight="20.0" prefWidth="150.0" promptText="Auto">
+      <TextField fx:id="customerBalance" editable="false" layoutX="213.0" layoutY="75.0" prefHeight="23.0" prefWidth="218.0" promptText="Auto">
          <font>
             <Font size="14.0" />
          </font>

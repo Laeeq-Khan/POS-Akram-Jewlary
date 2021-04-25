@@ -10,8 +10,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -79,9 +82,13 @@ public class MainController implements Initializable {
         });
         createInvoice_MenuItem.setOnAction(evt->{
             try{
-             AnchorPane p =(AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("Layouts/CreateInvoice.fxml"));
-             main_Container.getChildren().clear();
-             main_Container.getChildren().add(p);
+                AnchorPane p =(AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("Layouts/CreateInvoice.fxml"));
+                Scene scene = new Scene(p);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Invoice");
+                stage.getIcons().add(new Image("/Resource/softlogo.png"));
+                stage.show();
              }catch(Exception e){
                  e.printStackTrace();
              }
