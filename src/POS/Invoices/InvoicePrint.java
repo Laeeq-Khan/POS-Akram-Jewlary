@@ -68,7 +68,7 @@ String[] textLines;
         int end   = (pageIndex == pageBreaks.length)
                          ? textLines.length : pageBreaks[pageIndex];
   
-        int x = 85 ,  y = 112 ; // these two are using to totaly change the posiciton of whole document form x to y cordinates
+        int x = 60 ,  y = 70 ; // these two are using to totaly change the posiciton of whole document form x to y cordinates
         Color gray = new Color(205, 205,205);
     
         // Pixcels width = 420 height 595
@@ -87,8 +87,8 @@ String[] textLines;
         Date datee = new Date();  
         String time = formatDate.format(datee);
         
-        g.drawString("Time "+time, width-163 , y-5);
-        g.drawString("Page "+(pageIndex+1)+" of "+ (totalPages+1), width-63 , y-5);
+        g.drawString("Time "+time, width-210 , y-5);
+        g.drawString("Page "+(pageIndex+1)+" of "+ (totalPages+1), width-110 , y-5);
         g.setFont(new Font("default" , Font.PLAIN, 10));
         g.drawString("For Publicity", (width/2), y+12);
        
@@ -260,7 +260,7 @@ public InvoicePrint(ObservableList<InvoiceTable_Class> invoiceList,  float paid 
 
     PrinterJob job = PrinterJob.getPrinterJob();
     job.setPrintable(this);
-    boolean ok = job.printDialog();
+    boolean ok = true;
     if (ok) {
         try {
             job.print();

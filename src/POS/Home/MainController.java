@@ -5,6 +5,7 @@
  */
 package POS.Home;
 
+import POS.Invoices.CreateInvoiceController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -82,11 +83,14 @@ public class MainController implements Initializable {
         });
         createInvoice_MenuItem.setOnAction(evt->{
             try{
-                AnchorPane p =(AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("Layouts/CreateInvoice.fxml"));
-                Scene scene = new Scene(p);
+                FXMLLoader  p =  new FXMLLoader(getClass().getClassLoader().getResource("Layouts/CreateInvoice.fxml"));
+                AnchorPane root = (AnchorPane) p.load();
+                CreateInvoiceController controller = (CreateInvoiceController)p.getController();
                 Stage stage = new Stage();
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("Invoice");
+                controller.setStage(stage);
                 stage.getIcons().add(new Image("/Resource/softlogo.png"));
                 stage.show();
              }catch(Exception e){

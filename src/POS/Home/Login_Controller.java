@@ -46,9 +46,7 @@ public class Login_Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         Events();   
-        
     }    
     
     public void Events(){
@@ -95,7 +93,7 @@ public class Login_Controller implements Initializable {
                 VBox p =  FXMLLoader.load(getClass().getClassLoader().getResource("Layouts/Main.fxml"));
                 Stage stag = new Stage();
                 stage = stag;
-                stag.initStyle(StageStyle.UNDECORATED);
+               // stag.initStyle(StageStyle.UNDECORATED);
                 stag.setScene(new Scene(p));
                 stag.setTitle("Total Tuck shop");
                 stag.getIcons().add(new Image("/Resource/softlogo.png"));

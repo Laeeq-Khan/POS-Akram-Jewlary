@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import static java.time.LocalDate.now;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.EventObject;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -34,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -42,6 +44,7 @@ import javafx.scene.input.KeyEvent;
  */
 public class CreateInvoiceController implements Initializable {
 
+    Stage stage;
     @FXML   private TextField customerID_Field;
     @FXML    private TextField customerName_Field;
     @FXML    private TextField contact_Field,customerBalance;
@@ -80,12 +83,13 @@ public class CreateInvoiceController implements Initializable {
 
        con = DB_Connection.getConnection();
        initAllTable();
-      
        populateProductTable();
        events();
+       
         
     }
     
+   
     private void clearInvoice(){
              Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
              alert.setTitle("Message");
@@ -96,6 +100,12 @@ public class CreateInvoiceController implements Initializable {
                 clear();
              } 
     }
+    
+     public void setStage(Stage stage){
+        this.stage  = stage;
+    }
+     
+     
     private void clear(){
         invoiceNumber.setText(String.valueOf(Database_Returns.getNextAutoIncrement("invoice" , "invoiceNumber", 1000)));
         invoiceList.clear();
@@ -232,14 +242,19 @@ public class CreateInvoiceController implements Initializable {
                     customerTable.requestFocus();
                     customerTable.getSelectionModel().select(0);
                     customerTableToField();
+                   
                 }
+                 
             }
+        
             
             if(!evt.isControlDown() && evt.getCode() == KeyCode.ENTER){
                 populateCustomerTable(customerName_Field.getText());
                 if(customerName_Field.getText().length()==0)return;
                 contact_Field.requestFocus();
             }
+            changeTitle(customerName_Field.getText());
+            
              printCommand(evt);
         });
         
@@ -346,6 +361,10 @@ public class CreateInvoiceController implements Initializable {
         total.setText(String.valueOf(t));
         calculateGrandTotal();
        
+    }
+
+    private void changeTitle(String text) {
+         stage.setTitle(text+ " Bill");
     }
     public class InvoiceTable_Class{
         String code;
@@ -841,4 +860,6 @@ public class CreateInvoiceController implements Initializable {
          }
          return balance;
      }
+     
+     
 }

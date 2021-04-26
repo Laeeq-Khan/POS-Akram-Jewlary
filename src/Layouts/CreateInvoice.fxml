@@ -11,25 +11,30 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane prefHeight="770.0" prefWidth="1545.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Invoices.CreateInvoiceController">
    <children>
       <Label layoutX="15.0" layoutY="106.0" prefWidth="150.0" text="Customer Name">
          <font>
             <Font size="14.0" />
-         </font></Label>
+         </font>
+      </Label>
       <Label layoutX="15.0" layoutY="151.0" prefWidth="150.0" text="Contact">
          <font>
             <Font size="14.0" />
-         </font></Label>
+         </font>
+      </Label>
       <Label layoutX="15.0" layoutY="56.0" prefWidth="150.0" text="Customer ID">
          <font>
             <Font size="14.0" />
-         </font></Label>
+         </font>
+      </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="683.0" layoutX="445.0" layoutY="48.0" stroke="#f50000" strokeType="INSIDE" width="1.0" />
       <TextField fx:id="customerID_Field" disable="true" editable="false" layoutX="15.0" layoutY="76.0" prefHeight="20.0" prefWidth="128.0" promptText="Auto">
          <font>
             <Font size="14.0" />
-         </font></TextField>
+         </font>
+      </TextField>
       <TextField fx:id="customerName_Field" layoutX="15.0" layoutY="122.0" prefHeight="28.0" prefWidth="410.0">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -48,11 +53,13 @@
       <Label layoutX="15.0" layoutY="203.0" prefWidth="150.0" text="Address">
          <font>
             <Font size="14.0" />
-         </font></Label>
+         </font>
+      </Label>
       <TextField fx:id="address_Field" layoutX="15.0" layoutY="222.0" prefHeight="20.0" prefWidth="318.0">
          <font>
             <Font size="14.0" />
-         </font></TextField>
+         </font>
+      </TextField>
       <TableView fx:id="customerTable" layoutX="14.0" layoutY="253.0" prefHeight="464.0" prefWidth="388.0">
         <columns>
           <TableColumn fx:id="customerID_Column" prefWidth="58.0" text="ID" />
@@ -67,7 +74,8 @@
       <Label layoutX="969.0" layoutY="112.0" prefWidth="150.0" text="Product Name">
          <font>
             <Font size="13.0" />
-         </font></Label>
+         </font>
+      </Label>
       <TextField fx:id="productName_Field" layoutX="969.0" layoutY="131.0" prefHeight="22.0" prefWidth="264.0">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -97,11 +105,13 @@
       <Label layoutX="990.0" layoutY="161.0" prefHeight="17.0" prefWidth="63.0" text="Unit Price">
          <font>
             <Font size="13.0" />
-         </font></Label>
+         </font>
+      </Label>
       <Label layoutX="844.0" layoutY="161.0" prefHeight="17.0" prefWidth="63.0" text="Total Units">
          <font>
             <Font size="13.0" />
-         </font></Label>
+         </font>
+      </Label>
       <Label alignment="CENTER" layoutX="1198.0" layoutY="158.0" prefHeight="17.0" prefWidth="63.0" text="Total">
          <font>
             <Font size="13.0" />
@@ -111,10 +121,10 @@
          <columns>
             <TableColumn fx:id="productCode_InvoiceColumn" minWidth="0.0" prefWidth="0.0" text="Code" />
             <TableColumn fx:id="invoiceSrColumn" prefWidth="40.0" text="Sr" />
-            <TableColumn fx:id="productNameInvoice" prefWidth="181.0" text="Product Name" />
-            <TableColumn fx:id="UnitsInvoice" prefWidth="100.0" text="Total Units" />
-            <TableColumn fx:id="unitPriceInvoice" prefWidth="107.0" text="Unit Price" />
-            <TableColumn fx:id="totalInvoice" prefWidth="121.0" text="Total" />
+            <TableColumn fx:id="productNameInvoice" prefWidth="188.00006103515625" text="Product Name" />
+            <TableColumn fx:id="UnitsInvoice" prefWidth="151.199951171875" text="Total Units" />
+            <TableColumn fx:id="unitPriceInvoice" prefWidth="120.7999267578125" text="Unit Price" />
+            <TableColumn fx:id="totalInvoice" prefWidth="187.2000732421875" text="Total" />
          </columns>
          <contextMenu>
             <ContextMenu>
@@ -127,7 +137,8 @@
       <Label fx:id="grandTotalLabel" layoutX="946.0" layoutY="725.0" prefHeight="19.0" prefWidth="240.0" text="0">
          <font>
             <Font name="System Bold" size="13.0" />
-         </font></Label>
+         </font>
+      </Label>
       <Label layoutX="841.0" layoutY="218.0" prefHeight="17.0" prefWidth="119.0" text="Current Invoice">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -136,7 +147,8 @@
       <Label layoutX="844.0" layoutY="109.0" prefWidth="150.0" text="Product Code">
          <font>
             <Font size="13.0" />
-         </font></Label>
+         </font>
+      </Label>
       <TextField fx:id="productCode_Field" layoutX="844.0" layoutY="129.0" prefHeight="22.0" prefWidth="99.0">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -163,7 +175,8 @@
       <Label layoutX="213.0" layoutY="55.0" prefWidth="150.0" text="Customer Balance">
          <font>
             <Font size="14.0" />
-         </font></Label>
+         </font>
+      </Label>
       <Label fx:id="grandTotalLabel1" alignment="CENTER" layoutX="1349.0" layoutY="43.0" prefHeight="19.0" prefWidth="175.0" text="Paid Amount">
          <font>
             <Font name="System Bold" size="14.0" />

@@ -5,12 +5,14 @@
  */
 package POS.Home;
 
+import POS.Invoices.CreateInvoiceController;
 import com.smattme.MysqlExportService;
 import java.io.File;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.EventObject;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
@@ -21,12 +23,15 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -55,16 +60,21 @@ public class HomeController implements Initializable{
     private void events(){
         createInvoice.setOnAction(evt->{
               try{
-                AnchorPane p =(AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("Layouts/CreateInvoice.fxml"));
-                Scene scene = new Scene(p);
+                FXMLLoader  p =  new FXMLLoader(getClass().getClassLoader().getResource("Layouts/CreateInvoice.fxml"));
+                AnchorPane root = (AnchorPane) p.load();
+                CreateInvoiceController controller = (CreateInvoiceController)p.getController();
                 Stage stage = new Stage();
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("Invoice");
+                controller.setStage(stage);
                 stage.getIcons().add(new Image("/Resource/softlogo.png"));
                 stage.show();
                 
+                
            }catch(Exception e){
                e.printStackTrace();
+               System.exit(0);
            }
         });
         
