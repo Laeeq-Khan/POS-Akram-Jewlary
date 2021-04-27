@@ -800,7 +800,7 @@ public class CreateInvoiceController implements Initializable {
            
             float balnce= Float.parseFloat(balancString);
             float paid = Float.parseFloat(paidString);
-            new InvoicePrint(invoiceList,paid,balnce , grandTotalLabel.getText(), Validation.Reversing_Date(datee), invoiceNumber.getText(), customerName_Field.getText(), contact_Field.getText());
+            new InvoicePrint(invoiceList,paid,balnce , grandTotalLabel.getText(), Validation.Reversing_Date(datee), invoiceNumber.getText(), customerName_Field.getText(), contact_Field.getText(), address_Field.getText());
             clear();
             invoiceNumber.setText(String.valueOf(Database_Returns.getNextAutoIncrement("invoice" , "invoiceNumber", 1000)));
         } catch (Exception e) {

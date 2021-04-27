@@ -244,7 +244,7 @@ public void actionPerformed(ActionEvent e) {
 float balance;
 float paid;
 String customerId;
-public InvoicePrint(ObservableList<InvoiceTable_Class> invoiceList,  float paid ,float balance, String totalBill , String date , String invoice , String soldTo , String contact){
+public InvoicePrint(ObservableList<InvoiceTable_Class> invoiceList,  float paid ,float balance, String totalBill , String date , String invoice , String soldTo , String contact, String address){
 
    this.paid = paid;
     this.balance = balance;
