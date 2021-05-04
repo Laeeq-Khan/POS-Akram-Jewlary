@@ -539,11 +539,13 @@ public class CreateInvoiceController implements Initializable {
          address_Field.setText(row.getAddress());
          customerBalance.setText(String.valueOf(row.getBalance()));
          customerFieldDisable();
+         changeTitle(customerName_Field.getText());
     }
     private void customerFieldDisable(){
         customerName_Field.setDisable(true);
         contact_Field.setDisable(true);
         address_Field.setDisable(true);
+       changeTitle(customerName_Field.getText());
     }
     private void customerFieldEnable(){
         customerName_Field.setDisable(false);
@@ -551,6 +553,7 @@ public class CreateInvoiceController implements Initializable {
         address_Field.setDisable(false);
         System.out.println("Customer are "+customerList.size());
         customerTable.setItems(customerList);
+        changeTitle(customerName_Field.getText());
     }
 //    private void filterCustomersByName() {
 //     if(customerName_Field.getText().length()==0){
