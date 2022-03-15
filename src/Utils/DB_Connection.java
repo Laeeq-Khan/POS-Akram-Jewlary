@@ -19,6 +19,7 @@ public class DB_Connection {
     public static void connect_with_db(){
           try {
                Class.forName("com.mysql.jdbc.Driver");  
+               //dddcon =  DriverManager.getConnection("jdbc:mysql://localhost:3306/pos","root","");
                con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/pos","root","");
                System.out.println("Connected");
           } catch (SQLException e) {

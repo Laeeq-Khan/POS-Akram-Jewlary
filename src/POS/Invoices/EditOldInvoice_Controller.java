@@ -454,11 +454,11 @@ public class EditOldInvoice_Controller  implements Initializable {
     }
     
     public void calculate(TextField price, TextField items, Label total){
-        if(!Validation.Only_Number_Color(items, 6)){
+        if(!Validation.Only_Number_Color(items, 8)){
             total.setText("Invalid");
             return;
         }
-        if(!Validation.product_Price_color(price, 1000000)){
+        if(!Validation.product_Price_color(price, 999999999)){
             total.setText("Invalid");
             return;
         }
@@ -475,7 +475,7 @@ public class EditOldInvoice_Controller  implements Initializable {
         for (int i = 0; i < invoiceList.size(); i++) {
             
             invoiceList.get(i).setSr(i+1);
-            if(Validation.Only_Number_Color(invoiceList.get(i).getUnits(), 4) && Validation.product_Price_color(invoiceList.get(i).getUnitPrice(), 10000
+            if(Validation.Only_Number_Color(invoiceList.get(i).getUnits(), 8) && Validation.product_Price_color(invoiceList.get(i).getUnitPrice(), 999999999
             )){
                    String t = invoiceList.get(i).getTotal().getText();
                    float f = Float.parseFloat(t);

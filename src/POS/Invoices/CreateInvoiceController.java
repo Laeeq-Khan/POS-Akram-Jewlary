@@ -267,7 +267,7 @@ public class CreateInvoiceController implements Initializable {
         
     }
     private void calculateBalance(){
-        if(Validation.product_Price_color(customerPay_Field, 9000000) && Validation.product_Price_color(grandTotalLabel.getText(), 900000)){
+        if(Validation.product_Price_color(customerPay_Field, 999999999) && Validation.product_Price_color(grandTotalLabel.getText(), 999999999)){
                 String gTotal = grandTotalLabel.getText();
                 String userAmt = customerPay_Field.getText();
                 
@@ -309,8 +309,8 @@ public class CreateInvoiceController implements Initializable {
     }
     private void addItemToInvoice(){
         calculateGrandTotal();
-        if(!Validation.Only_Number_Color(totalUnits_Field, 6))return;
-        if(!Validation.product_Price_color(unitPrice_Field, 100000))return;
+        if(!Validation.Only_Number_Color(totalUnits_Field, 8))return;
+        if(!Validation.product_Price_color(unitPrice_Field, 10000000))return;
         if(totalUnits_Field.getText().equals("0") || unitPrice_Field.getText().equals("0"))return;
         String code = productCode_Field.getText();
         TextField price = new TextField(unitPrice_Field.getText());
@@ -347,11 +347,11 @@ public class CreateInvoiceController implements Initializable {
         
     }
     public void calculate(TextField price, TextField items, Label total){
-        if(!Validation.Only_Number_Color(items, 6)){
+        if(!Validation.Only_Number_Color(items, 8)){
             total.setText("Invalid");
             return;
         }
-        if(!Validation.product_Price_color(price, 1000000)){
+        if(!Validation.product_Price_color(price, 10000000)){
             total.setText("Invalid");
             return;
         }
@@ -436,8 +436,8 @@ public class CreateInvoiceController implements Initializable {
         String unitPrice = unitPrice_Field.getText();
         String totalUnit= totalUnits_Field.getText();
         
-        if(Validation.product_Price_color(unitPrice_Field, 10000)==false)return;
-        if(Validation.Only_Number_Color(totalUnits_Field, 4)==false)return;
+        if(Validation.product_Price_color(unitPrice_Field, 10000000)==false)return;
+        if(Validation.Only_Number_Color(totalUnits_Field, 8)==false)return;
         
         float units = Float.parseFloat(unitPrice_Field.getText());
         int items = Integer.parseInt(totalUnits_Field.getText());
@@ -672,7 +672,7 @@ public class CreateInvoiceController implements Initializable {
         for (int i = 0; i < invoiceList.size(); i++) {
             
             invoiceList.get(i).setSr(i+1);
-            if(Validation.Only_Number_Color(invoiceList.get(i).getUnits(), 4) && Validation.product_Price_color(invoiceList.get(i).getUnitPrice(), 10000
+            if(Validation.Only_Number_Color(invoiceList.get(i).getUnits(), 8) && Validation.product_Price_color(invoiceList.get(i).getUnitPrice(), 10000000
             )){
                    String t = invoiceList.get(i).getTotal().getText();
                    float f = Float.parseFloat(t);
@@ -688,7 +688,7 @@ public class CreateInvoiceController implements Initializable {
                  customerPay_Field.setText(String.valueOf(gTotal));
             }
            
-            printButton.setDisable(false);
+           // printButton.setDisable(false);
         }else{
             grandTotalLabel.setText("Invalid Entry in Invoice Table");
             printButton.setDisable(true);
@@ -699,7 +699,7 @@ public class CreateInvoiceController implements Initializable {
     }
     private void Invoice_Save_And_Print(){
         
-        if(!Validation.product_Price_color(customerPay_Field , 9999999)){
+        if(!Validation.product_Price_color(customerPay_Field , 999999999)){
                 Alert a = new Alert(Alert.AlertType.WARNING);
                 a.setTitle("Warning! Can't print");
                 a.setContentText("Paid Amount Value is Wrong");
