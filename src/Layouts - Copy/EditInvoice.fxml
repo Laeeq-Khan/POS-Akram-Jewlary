@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Invoices.EditOldInvoice_Controller">
+<AnchorPane prefHeight="770.0" prefWidth="1545.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Invoices.EditOldInvoice_Controller">
    <children>
       <TextField fx:id="searchField" layoutX="58.0" layoutY="86.0" prefHeight="22.0" prefWidth="311.0" promptText="Search By Customer, Invoice or Date(dd-mm-yy)">
          <font>
@@ -24,7 +24,7 @@
          </font>
       </TextField>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="716.0" layoutX="632.0" layoutY="24.0" stroke="#f50000" strokeType="INSIDE" width="1.0" />
-      <TableView fx:id="invoiceTable" layoutX="718.0" layoutY="192.0" prefHeight="485.0" prefWidth="749.0" style="-fx-background-color: #CDCDCD;" AnchorPane.bottomAnchor="138.39999999999998" AnchorPane.leftAnchor="717.9999999999999" AnchorPane.rightAnchor="140.39999999999998" AnchorPane.topAnchor="192.0">
+      <TableView fx:id="invoiceTable" layoutX="718.0" layoutY="192.0" prefHeight="485.0" prefWidth="749.0" style="-fx-background-color: #CDCDCD;">
          <columns>
             <TableColumn fx:id="productCode_InvoiceColumn" minWidth="0.0" prefWidth="0.0" text="Code" />
             <TableColumn fx:id="invoiceSrColumn" prefWidth="58.0" text="Sr" />
@@ -34,7 +34,7 @@
             <TableColumn fx:id="totalInvoice" prefWidth="129.0" text="Total" />
          </columns>
       </TableView>
-      <Label fx:id="grandTotalLabel" layoutX="823.0" layoutY="714.0" prefHeight="19.0" prefWidth="379.0" text="0" AnchorPane.bottomAnchor="83.0">
+      <Label fx:id="grandTotalLabel" layoutX="824.0" layoutY="696.0" prefHeight="19.0" prefWidth="379.0" text="0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
@@ -43,13 +43,13 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="printButton" layoutX="1343.0" layoutY="708.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: #F68A1F;" text="Print Bill" textFill="#fcfcfc" AnchorPane.bottomAnchor="77.6" />
+      <Button fx:id="printButton" layoutX="1344.0" layoutY="690.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: #F68A1F;" text="Print Bill" textFill="#fcfcfc" />
       <Label layoutX="718.0" layoutY="72.0" prefWidth="150.0" text="Invoice Number" textFill="#1606f5">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="grandTotalLabel11" layoutX="722.0" layoutY="713.0" prefHeight="20.0" prefWidth="77.0" text="Grand Total" AnchorPane.bottomAnchor="83.0">
+      <Label fx:id="grandTotalLabel11" layoutX="723.0" layoutY="695.0" prefHeight="20.0" prefWidth="77.0" text="Grand Total">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -76,7 +76,7 @@
          </font>
       </Label>
       <Button fx:id="searchButton" layoutX="397.0" layoutY="84.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #D6D6D6;" text="Search" textFill="#0003c6" />
-      <TableView fx:id="invoiceSearchTable" layoutX="58.0" layoutY="144.0" prefHeight="533.0" prefWidth="491.0" AnchorPane.bottomAnchor="138.39999999999998" AnchorPane.leftAnchor="58.00000000000006" AnchorPane.rightAnchor="1058.8" AnchorPane.topAnchor="144.0">
+      <TableView fx:id="invoiceSearchTable" layoutX="58.0" layoutY="144.0" prefHeight="533.0" prefWidth="491.0">
         <columns>
           <TableColumn fx:id="invoiceNumber_Col" prefWidth="77.0" text="Invoice #" />
           <TableColumn fx:id="customer_col" prefWidth="207.0" text="Customer" />
@@ -122,7 +122,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="saveButton" layoutX="1190.0" layoutY="709.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: green;" text="Save Bill" textFill="#fcfcfc" AnchorPane.bottomAnchor="83.0" />
+      <Button fx:id="saveButton" layoutX="1191.0" layoutY="691.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: green;" text="Save Bill" textFill="#fcfcfc" />
       <Label layoutX="720.0" layoutY="110.0" prefHeight="20.0" prefWidth="96.0" text="Customer Id">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -133,6 +133,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="114.0" text="Searcy by Name, Invoice Number or Date (Date Format DD-MM-YYYY)" />
+      <Label layoutX="58.0" layoutY="114.0" text="Date Search Format DD/MM/YYYY" />
    </children>
 </AnchorPane>

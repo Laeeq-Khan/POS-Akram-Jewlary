@@ -28,14 +28,13 @@ public class DB_Connection {
             a.setTitle("Database connection error");
             a.setContentText("Your are not connected with database");
             a.showAndWait();
-            e.printStackTrace();
+           
             
          }catch(Exception e){
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setTitle("Database connection error");
             a.setContentText("Your are not connected with database: Error Code : "+e);
             a.showAndWait();
-            e.printStackTrace();
           }
         
      }//end of function

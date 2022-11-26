@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -84,7 +85,7 @@ public class MainController implements Initializable {
         createInvoice_MenuItem.setOnAction(evt->{
             try{
                 FXMLLoader  p =  new FXMLLoader(getClass().getClassLoader().getResource("Layouts/CreateInvoice.fxml"));
-                AnchorPane root = (AnchorPane) p.load();
+                BorderPane root = (BorderPane) p.load();
                 CreateInvoiceController controller = (CreateInvoiceController)p.getController();
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -92,6 +93,7 @@ public class MainController implements Initializable {
                 stage.setTitle("Invoice");
                 controller.setStage(stage);
                 stage.getIcons().add(new Image("/Resource/softlogo.png"));
+                stage.setMaximized(true);
                 stage.show();
              }catch(Exception e){
                  e.printStackTrace();

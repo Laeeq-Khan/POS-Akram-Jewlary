@@ -61,13 +61,14 @@ public class HomeController implements Initializable{
         createInvoice.setOnAction(evt->{
               try{
                 FXMLLoader  p =  new FXMLLoader(getClass().getClassLoader().getResource("Layouts/CreateInvoice.fxml"));
-                AnchorPane root = (AnchorPane) p.load();
+                BorderPane root = (BorderPane) p.load();
                 CreateInvoiceController controller = (CreateInvoiceController)p.getController();
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("Invoice");
                 controller.setStage(stage);
+                stage.setMaximized(true);
                 stage.getIcons().add(new Image("/Resource/softlogo.png"));
                 stage.show();
                 

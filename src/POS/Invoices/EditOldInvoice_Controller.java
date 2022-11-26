@@ -301,14 +301,14 @@ public class EditOldInvoice_Controller  implements Initializable {
                }
             
                
-            stm = con.prepareStatement("select customerId from customer where name like '%"+search+"%'");
+            stm = con.prepareStatement("select customerId from customer where name = '"+search+"'");
             rs = stm.executeQuery();
             while(rs.next()){
                  idList.add(rs.getString("customerId"));
             }
             for (int i = 0; i < idList.size(); i++) {
                  stm = con.prepareStatement("select sum(invoicedetails.total) as 'abc', invoice.invoiceNumber,invoice.customerId,  invoice.displayDate from invoice inner join invoicedetails on "
-                    + "invoice.invoiceNumber = invoicedetails.invoicenumber where invoice.customerId like '%"+idList.get(i)+"%' GROUP BY invoice.invoiceNumber ");
+                    + "invoice.invoiceNumber = invoicedetails.invoicenumber where invoice.customerId = '"+idList.get(i)+"' GROUP BY invoice.invoiceNumber ");
                  rs = stm.executeQuery();
                  while(rs.next()){
                         String number = rs.getString("invoice.invoiceNumber");

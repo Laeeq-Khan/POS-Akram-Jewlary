@@ -95,12 +95,12 @@ public class Login_Controller implements Initializable {
                 stage = stag;
                // stag.initStyle(StageStyle.UNDECORATED);
                 stag.setScene(new Scene(p));
-                stag.setTitle("Total Tuck shop");
+                stag.setTitle("Akram Jewellery Shop");
                 stag.getIcons().add(new Image("/Resource/softlogo.png"));
                // stag.setFullScreen(true);
                
-                stag.setHeight(800);
-                stag.setWidth(1550);
+                stag.setHeight(950);
+                stag.setWidth(1650);
                 stag.show();
                 username_Field.setText("");
                 password_Field.setText("");

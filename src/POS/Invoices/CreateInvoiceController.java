@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import static java.time.LocalDate.now;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.EventObject;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -70,6 +71,7 @@ public class CreateInvoiceController implements Initializable {
     @FXML    private TableColumn<InvoiceTable_Class, Integer> invoiceSrColumn;
     @FXML    private MenuItem deleteRecord;
     @FXML    private Label grandTotalLabel , invoiceBalance_Field;
+    @FXML    private Button search_field;
     @FXML    private TextField productCode_Field;
     boolean paidStatus = false;
     private Connection con;
@@ -236,6 +238,10 @@ public class CreateInvoiceController implements Initializable {
             
              printCommand(evt);
         });
+        
+        search_field.setOnAction(evt->{
+             populateCustomerTable(customerName_Field.getText());
+        });
         customerName_Field.setOnKeyReleased(evt->{
              if(evt.isControlDown() && evt.getCode() == KeyCode.ENTER){
                 if(customerList.size()>0){
@@ -246,7 +252,6 @@ public class CreateInvoiceController implements Initializable {
                 }
                  
             }
-        
             
             if(!evt.isControlDown() && evt.getCode() == KeyCode.ENTER){
                 populateCustomerTable(customerName_Field.getText());
@@ -344,6 +349,7 @@ public class CreateInvoiceController implements Initializable {
         totalUnits_Field.requestFocus();
         totalLable.setText("0.0");
         productSearc_Field.setText("");
+        invoiceTable.scrollTo(invoiceTable.getItems().size()-1);
         
     }
     public void calculate(TextField price, TextField items, Label total){
@@ -457,17 +463,27 @@ public class CreateInvoiceController implements Initializable {
         if(search.length() ==0 || search == null || search.equals(""))return;
         customerList =FXCollections.observableArrayList();
         try {
-            PreparedStatement stm = con.prepareStatement("select * from  customer where name like '%"+search+"%' or  contact like '%"+search+"%'  ");
+            PreparedStatement stm = con.prepareStatement("select *, sum(balance) as bal from  customer where name like '%"+search+"%' or  contact like '%"+search+"%'  group by name");
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
                 String id = rs.getString("customerId");
                 String name = rs.getString("name");
                 String contact = rs.getString("contact");
                 String address = rs.getString("address");
-                float balance = (float)rs.getFloat("balance");
-                customerList.add(new CustomerTable(id, name, contact, address , balance));
+                float balance = (float)rs.getFloat("bal");
+                
+                String parts[] = name.split(" ");
+                boolean found = false;
+                for (int i = 0; i < parts.length; i++) {
+                   if(parts[i].equalsIgnoreCase(search)){
+                       customerList.add(new CustomerTable(id, name, contact, address , balance));
+                       break;
+                   }
+                }
             }
+            customerList.sort((a, b) -> a.customerName.compareTo(b.customerName));
             customerTable.setItems(customerList);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

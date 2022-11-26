@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-padding: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: red;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Home.MainController">
+   <children>
+      <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="60.0" prefWidth="1100.0" style="-fx-background-color: #F1F3F4;">
+        <menus>
+            <Menu mnemonicParsing="false" text="Home">
+               <items>
+                  <MenuItem fx:id="home" mnemonicParsing="false" text="Home">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/productAccount-01.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Accounts">
+               <items>
+                  <MenuItem fx:id="productAccount_MenuItem" mnemonicParsing="false" text="Product Account">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/productAccount-01.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem fx:id="customerAccount_MenuItem" mnemonicParsing="false" text="Customer Account">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/customerAccount.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Bill">
+               <items>
+                  <MenuItem fx:id="createInvoice_MenuItem" mnemonicParsing="false" text="Create Invoice">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/createInvoice.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem fx:id="editInvoices_MenuItem" mnemonicParsing="false" text="Edit Old Invoices">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/editinvoice.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem fx:id="receivableMenu" mnemonicParsing="false" text="Receviable">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/addStock.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Reports">
+               <items>
+                  <MenuItem fx:id="invoiceHistory_Menu" mnemonicParsing="false" text="Invoices Report">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/purchaseReturn.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem fx:id="saleReportMenus" mnemonicParsing="false" text="Sale Report">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/addStock.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Setting">
+               <items>
+                  <MenuItem fx:id="changePassword_MenuItem" mnemonicParsing="false" text="Change Password">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/addStock.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Close">
+               <items>
+                  <MenuItem fx:id="close" mnemonicParsing="false" style="-fx-text-fill: red;" text="EXIT">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resource/exiticon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane fx:id="main_Container" prefHeight="800.0" prefWidth="1550.0" style="-fx-background-color: #FFFFFF;" />
+   </children>
+</VBox>

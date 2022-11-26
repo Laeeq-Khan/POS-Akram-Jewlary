@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main_Container" prefHeight="770.0" prefWidth="1545.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Home.HomeController">
+<AnchorPane fx:id="main_Container" prefHeight="770.0" prefWidth="1545.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Home.HomeController">
    <children>
       <Label layoutX="1342.0" layoutY="14.0" text="Home" textFill="#fe9500">
          <font>
@@ -20,22 +20,22 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="1.0" layoutX="520.0" layoutY="120.0" stroke="#f50000" strokeType="INSIDE" width="464.0" />
-      <Label layoutX="431.0" layoutY="234.0" text="Date :" textFill="RED">
+      <Label layoutX="441.0" layoutY="234.0" text="Date :" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="dateLabel" layoutX="505.0" layoutY="229.0" prefHeight="40.0" prefWidth="258.0">
+      <Label fx:id="dateLabel" layoutX="495.0" layoutY="229.0" prefHeight="40.0" prefWidth="258.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="790.0" layoutY="230.0" text="Time :" textFill="RED">
+      <Label layoutX="800.0" layoutY="230.0" text="Time :" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="timeLabel" contentDisplay="CENTER" layoutX="857.0" layoutY="225.0" prefHeight="40.0" prefWidth="258.0">
+      <Label fx:id="timeLabel" contentDisplay="CENTER" layoutX="847.0" layoutY="225.0" prefHeight="40.0" prefWidth="258.0">
          <font>
             <Font size="20.0" />
          </font>
