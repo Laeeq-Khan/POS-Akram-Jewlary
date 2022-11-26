@@ -567,7 +567,7 @@ public class CreateInvoiceController implements Initializable {
         customerName_Field.setDisable(false);
         contact_Field.setDisable(false);
         address_Field.setDisable(false);
-        System.out.println("Customer are "+customerList.size());
+      //  System.out.println("Customer are "+customerList.size());
         customerTable.setItems(customerList);
         changeTitle(customerName_Field.getText());
     }
@@ -778,7 +778,7 @@ public class CreateInvoiceController implements Initializable {
            ResultSet rs = stm2.executeQuery();
            if(rs.next()){
                invoiceNumber.setText(rs.getString("maxnumber"));
-               System.out.println("max number is "+invoiceNumber.getText());
+              // System.out.println("max number is "+invoiceNumber.getText());
            }
             
            
@@ -803,7 +803,7 @@ public class CreateInvoiceController implements Initializable {
                 stm.setFloat(1, pay);
                 stm.setString(2, customerId);
                 stm.executeUpdate();
-                System.out.println("Customer balance updated");
+              //  System.out.println("Customer balance updated");
             } catch (Exception e) {
                 e.printStackTrace();
             }

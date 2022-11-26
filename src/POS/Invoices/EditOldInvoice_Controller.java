@@ -257,7 +257,6 @@ public class EditOldInvoice_Controller  implements Initializable {
                        String tt = rs.getString("abc");
                        if(tt == null || tt.equalsIgnoreCase("null")) tt="0";
                        float total =(float) Float.parseFloat(tt);
-                       System.out.println("Custmer search for id "+search);
                        String customerName = Database_Returns.Code_Return("customer", "customerId", cstmId, "name");
                        if(customerName.equalsIgnoreCase("not exsists"))customerName=" ";
                        searchList.add(new SearchTableClass(number, customerName, displayDate, cstmId, total));
@@ -548,7 +547,6 @@ public class EditOldInvoice_Controller  implements Initializable {
                 stm.setFloat(1, newAmount);
                 stm.setString(2, customerID_Label.getText());
                 stm.executeUpdate();
-                System.out.println("Customer balance updated");
             } catch (Exception e) {
                 e.printStackTrace();
             }
