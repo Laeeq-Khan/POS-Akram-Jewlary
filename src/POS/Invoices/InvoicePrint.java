@@ -98,8 +98,8 @@ String[] textLines;
         g.drawString("Date  :", (width/2)+90, y+30);
         g.drawString(date, (width/2)+125, y+30);
         
-        g.drawString("Address :", (width/2)+80, y+45);
-        g.drawString(address, (width/2)+125, y+45);
+        g.drawString("Address :", (width/2)+65, y+45);
+        g.drawString(address, (width/2)+105, y+45);
         
         
         g.drawString("Customer Name : "+soldTo, x, y+45);
@@ -169,7 +169,7 @@ String[] textLines;
             g.setColor(gray);
             g.fillRect(x+200, y+30+lineHeight+lineHeight, 130, 15);
             g.setColor(Color.black);
-            g.setFont(new Font("default" , Font.BOLD , 9));   
+            g.setFont(new Font("default" , Font.BOLD , 11));   
             g.drawString("Sub Total : "+subTotal+"/-" , x+203, y+30+lineHeight+lineHeight+10);
             subTotal=0;
              g.setFont(new Font("default" , Font.PLAIN , 9));   
@@ -199,10 +199,11 @@ String[] textLines;
                 
                 g.setColor(Color.BLACK);
                 y = y+5;
-                g.setFont(new Font("default" , Font.BOLD , 9)); 
+                 
                 g.drawString("Grand Amount :", x+162, y-5);
+                g.setFont(new Font("default" , Font.BOLD , 13));
                 g.drawString(totalBill+"/-", x+250, y-5);
-                
+                g.setFont(new Font("default" , Font.BOLD , 10)); 
                 
                 String paid="0", balance="0", netBalance="0";
                 try {

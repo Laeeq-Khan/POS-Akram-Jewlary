@@ -114,7 +114,8 @@ public class Login_Controller implements Initializable {
             }
     
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
+            System.out.println("Failed to connect with database");
         }
  
         
