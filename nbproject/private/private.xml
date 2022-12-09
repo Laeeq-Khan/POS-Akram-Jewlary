@@ -6,11 +6,12 @@
             <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Home/Login_Controller.java</file>
             <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Home/HomeController.java</file>
             <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Home/MainController.java</file>
-            <file>file:/E:/Projects/POS-Akram-Jewlary/src/Utils/DB_Connection.java</file>
+            <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Invoices/InvoicePrint.java</file>
             <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Invoices/EditOldInvoice_Controller.java</file>
             <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Home/DriverClass.java</file>
             <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Invoices/CreateInvoiceController.java</file>
             <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Invoices/EditInvoicePrint.java</file>
+            <file>file:/E:/Projects/POS-Akram-Jewlary/src/POS/Invoices/InvoiceHistory_Controller.java</file>
         </group>
     </open-files>
 </project-private>

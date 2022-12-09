@@ -37,7 +37,7 @@ String[] textLines;
                 textLines[i]= "" + i;
             }
         }
-        totalPages =(int)invoiceList.size() / 20;
+        totalPages =(invoiceList.size()-1) / 20;
     }
     int numBreaks=0;
  public int print(Graphics g, PageFormat pf, int pageIndex)

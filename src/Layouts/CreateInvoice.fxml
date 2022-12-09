@@ -15,9 +15,9 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="POS.Invoices.CreateInvoiceController">
    <left>
-      <AnchorPane prefHeight="770.0" prefWidth="450.0" style="-fx-background-color: white;" styleClass="style.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="830.0" prefWidth="778.0" style="-fx-background-color: white;" styleClass="style.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="-3.0" prefHeight="770.0" prefWidth="499.0" stylesheets="@style.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane layoutX="14.0" layoutY="-7.0" prefHeight="822.0" prefWidth="759.0" stylesheets="@style.css" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-7.0">
                <children>
                   <Label layoutX="28.0" layoutY="109.0" prefWidth="150.0" text="Customer Name">
                      <font>
@@ -39,14 +39,14 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="customerName_Field" layoutX="28.0" layoutY="128.0" prefHeight="28.0" prefWidth="333.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="129.0">
+                  <TextField fx:id="customerName_Field" layoutX="28.0" layoutY="128.0" prefHeight="28.0" prefWidth="333.0" AnchorPane.leftAnchor="28.0">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="contact_Field" layoutX="28.0" layoutY="188.0" prefHeight="23.0" prefWidth="444.0" AnchorPane.rightAnchor="18.0">
+                  <TextField fx:id="contact_Field" layoutX="28.0" layoutY="188.0" prefHeight="23.0" prefWidth="444.0">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </TextField>
                   <Label layoutX="28.0" layoutY="223.0" prefWidth="150.0" text="Address">
@@ -59,7 +59,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TableView fx:id="customerTable" layoutX="22.0" layoutY="282.0" prefHeight="438.0" prefWidth="462.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="282.0">
+                  <TableView fx:id="customerTable" layoutX="22.0" layoutY="282.0" prefHeight="491.0" prefWidth="474.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="263.0" AnchorPane.topAnchor="282.0">
                     <columns>
                       <TableColumn fx:id="customerID_Column" prefWidth="24.0" text="ID" />
                       <TableColumn fx:id="customerName_Column" prefWidth="164.8000144958496" text="Customer Name" />
@@ -79,72 +79,89 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="683.0" layoutX="488.0" layoutY="86.0" stroke="#f50000" strokeType="INSIDE" width="1.0" AnchorPane.bottomAnchor="1.3999999999999773" AnchorPane.topAnchor="86.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="676.0" stroke="#f50000" strokeType="INSIDE" width="1.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="683.0" layoutX="498.0" layoutY="86.0" stroke="#f50000" strokeType="INSIDE" width="1.0" AnchorPane.bottomAnchor="53.39999999999998" AnchorPane.topAnchor="86.0" />
                   <Label layoutX="28.0" layoutY="14.0" prefHeight="30.0" prefWidth="218.0" text="Sale Invoice" textFill="#035cf5">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Label>
                   <Button fx:id="search_field" layoutX="373.0" layoutY="129.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: #F0F0F0;" text="Search" />
+                  <AnchorPane layoutX="525.0" layoutY="86.0" prefHeight="688.0" prefWidth="237.0" stylesheets="@style.css" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="525.0" AnchorPane.topAnchor="86.0">
+                     <children>
+                        <Label layoutX="1.0" prefWidth="150.0" text="Search Product" />
+                        <TextField fx:id="productSearc_Field" layoutY="20.0" prefHeight="20.0" prefWidth="255.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <TableView fx:id="productTable" layoutX="1.0" layoutY="56.0" prefHeight="632.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="56.0">
+                           <columns>
+                              <TableColumn fx:id="productCodeColumn" minWidth="0.0" prefWidth="0.0" text="Code" />
+                              <TableColumn fx:id="productColumn" prefWidth="254.0" text="Products" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="770.0" prefWidth="775.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="830.0" prefWidth="0.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <AnchorPane style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
          <children>
-            <AnchorPane layoutX="-1.0" prefHeight="770.0" prefWidth="774.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.8000000000000682" AnchorPane.topAnchor="0.0">
+            <AnchorPane layoutX="7.0" layoutY="10.0" style="-fx-background-color: white;" stylesheets="@style.css" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <Label layoutX="189.0" layoutY="110.0" prefWidth="150.0" text="Product Name">
+                  <Label layoutX="189.0" layoutY="78.0" prefWidth="150.0" text="Product Name">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="productName_Field" layoutX="189.0" layoutY="129.0" prefHeight="22.0" prefWidth="264.0">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="totalUnits_Field" layoutX="65.0" layoutY="175.0" prefHeight="22.0" prefWidth="128.0">
+                  <TextField fx:id="productName_Field" layoutX="189.0" layoutY="107.0" prefHeight="25.0" prefWidth="326.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="unitPrice_Field" layoutX="210.0" layoutY="176.0" prefHeight="22.0" prefWidth="141.0">
+                  <TextField fx:id="totalUnits_Field" layoutX="65.0" layoutY="173.0" prefHeight="26.0" prefWidth="174.0">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </TextField>
-                  <Label fx:id="totalLable" alignment="CENTER" layoutX="499.0" layoutY="202.0" prefHeight="30.0" prefWidth="233.0" style="-fx-border-color: green;" text="0.00" textFill="#00b5dd">
+                  <TextField fx:id="unitPrice_Field" layoutX="266.0" layoutY="173.0" prefHeight="26.0" prefWidth="194.0">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="totalLable" alignment="CENTER" layoutX="568.0" layoutY="194.0" prefHeight="30.0" prefWidth="278.0" style="-fx-border-color: green;" text="0.00" textFill="#00b5dd" AnchorPane.rightAnchor="11.399999999999977">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="210.0" layoutY="159.0" prefHeight="17.0" prefWidth="63.0" text="Unit Price">
+                  <Label layoutX="270.0" layoutY="146.0" prefHeight="20.0" prefWidth="101.0" text="Unit Price">
                      <font>
-                        <Font size="13.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="64.0" layoutY="159.0" prefHeight="17.0" prefWidth="63.0" text="Total Units">
+                  <Label layoutX="64.0" layoutY="146.0" prefHeight="20.0" prefWidth="110.0" text="Total Units">
                      <font>
-                        <Font size="13.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="500.0" layoutY="181.0" prefHeight="17.0" prefWidth="63.0" text="Sub Total">
+                  <Label alignment="CENTER" layoutX="565.0" layoutY="173.0" prefHeight="17.0" prefWidth="63.0" text="Sub Total" AnchorPane.rightAnchor="229.5999999999999">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="invoiceTable" layoutX="58.0" layoutY="237.0" prefHeight="473.0" prefWidth="681.0" style="-fx-background-color: #CDCDCD;" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="237.0">
+                  <TableView fx:id="invoiceTable" layoutX="58.0" layoutY="237.0" prefHeight="501.0" prefWidth="788.0" style="-fx-background-color: #CDCDCD;" styleClass="text-field" stylesheets="@style.css" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="237.0">
                      <columns>
-                        <TableColumn fx:id="productCode_InvoiceColumn" minWidth="0.0" prefWidth="0.0" text="Code" />
-                        <TableColumn fx:id="invoiceSrColumn" prefWidth="40.0" text="Sr" />
+                        <TableColumn fx:id="productCode_InvoiceColumn" minWidth="0.0" prefWidth="12.00006103515625" text="Code" visible="false" />
+                        <TableColumn fx:id="invoiceSrColumn" maxWidth="2000.0" minWidth="-1.0" prefWidth="-1.0" text="Sr" />
                         <TableColumn fx:id="productNameInvoice" prefWidth="188.00006103515625" text="Product Name" />
                         <TableColumn fx:id="UnitsInvoice" prefWidth="151.199951171875" text="Total Units" />
-                        <TableColumn fx:id="unitPriceInvoice" prefWidth="120.7999267578125" text="Unit Price" />
-                        <TableColumn fx:id="totalInvoice" prefWidth="187.2000732421875" text="Total" />
+                        <TableColumn fx:id="unitPriceInvoice" prefWidth="157.59994506835938" text="Unit Price" />
+                        <TableColumn fx:id="totalInvoice" prefWidth="190.4000244140625" text="Total" />
                      </columns>
                      <contextMenu>
                         <ContextMenu>
@@ -153,8 +170,11 @@
                           </items>
                         </ContextMenu>
                      </contextMenu>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
-                  <Label fx:id="grandTotalLabel" layoutX="201.0" layoutY="731.0" prefHeight="32.0" prefWidth="352.0" text="0" AnchorPane.bottomAnchor="15.0">
+                  <Label fx:id="grandTotalLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="201.0" layoutY="731.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-color: blue;" text="0" AnchorPane.bottomAnchor="15.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -164,34 +184,34 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="64.0" layoutY="107.0" prefWidth="150.0" text="Product Code">
+                  <Label layoutX="64.0" layoutY="77.0" prefWidth="150.0" text="Product Code">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="productCode_Field" layoutX="64.0" layoutY="127.0" prefHeight="22.0" prefWidth="99.0">
+                  <TextField fx:id="productCode_Field" layoutX="64.0" layoutY="107.0" prefHeight="25.0" prefWidth="99.0">
                      <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="printButton" layoutX="613.0" layoutY="728.8" mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: #F68A1F;" text="Print Bill" textFill="#fcfcfc" AnchorPane.bottomAnchor="19.200000000000045" />
-                  <Label layoutX="66.0" layoutY="41.0" prefWidth="150.0" text="Invoice Number" textFill="#1606f5">
+                  <Button fx:id="printButton" layoutX="667.0" layoutY="744.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: #F68A1F;" text="Print Bill" textFill="#fcfcfc" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="1.1999999999999318" />
+                  <Label layoutX="66.0" layoutY="20.0" prefWidth="150.0" text="Invoice Number" textFill="#1606f5">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="invoiceNumber" editable="false" layoutX="65.0" layoutY="61.0" prefHeight="22.0" prefWidth="388.0" promptText="00001">
+                  <TextField fx:id="invoiceNumber" editable="false" layoutX="65.0" layoutY="40.0" prefHeight="22.0" prefWidth="435.0" promptText="00001">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="clearInvoiceButton" layoutX="608.0" layoutY="162.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #F0F0F0;" text="Clear Invoice" textFill="#4800ff" underline="true" />
-                  <Label fx:id="grandTotalLabel1" alignment="CENTER" layoutX="545.0" layoutY="17.0" prefHeight="20.0" prefWidth="192.0" text="Paid Amount">
+                  <Button fx:id="clearInvoiceButton" layoutX="698.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #F0F0F0;" text="Clear Invoice" textFill="#4800ff" underline="true" AnchorPane.rightAnchor="13.399999999999977" />
+                  <Label fx:id="grandTotalLabel1" alignment="CENTER" layoutX="545.0" layoutY="17.0" prefHeight="20.0" prefWidth="228.0" text="Paid Amount" AnchorPane.rightAnchor="11.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="customerPay_Field" alignment="CENTER" layoutX="546.0" layoutY="42.0" prefHeight="30.0" prefWidth="191.0" style="-fx-text-fill: #1094F4;" text="0">
+                  <TextField fx:id="customerPay_Field" alignment="CENTER" layoutX="546.0" layoutY="42.0" prefHeight="30.0" prefWidth="226.0" style="-fx-text-fill: #1094F4;" text="0" AnchorPane.rightAnchor="12.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -201,18 +221,18 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="invoiceBalance_Field" alignment="CENTER" layoutX="547.0" layoutY="98.0" prefHeight="47.0" prefWidth="188.0" style="-fx-border-width: 1; -fx-border-color: red;" text="0" textFill="#ff0505">
+                  <Label fx:id="invoiceBalance_Field" alignment="CENTER" layoutX="547.0" layoutY="98.0" prefHeight="47.0" prefWidth="234.0" style="-fx-border-width: 1; -fx-border-color: red;" text="0" textFill="#ff0505" AnchorPane.rightAnchor="8.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="invoiceBalance_Field1" alignment="CENTER" layoutX="544.0" layoutY="77.0" prefHeight="20.0" prefWidth="188.0" text="Current Pending" textFill="#eb1111">
+                  <Label fx:id="invoiceBalance_Field1" alignment="CENTER" layoutX="544.0" layoutY="77.0" prefHeight="20.0" prefWidth="226.0" text="Current Pending" textFill="#eb1111" AnchorPane.rightAnchor="9.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#320606" height="142.0" layoutX="537.0" layoutY="8.0" stroke="#027270" strokeType="INSIDE" width="2.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#320606" height="2.0" layoutX="538.0" layoutY="149.0" stroke="#027270" strokeType="INSIDE" width="194.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#320606" height="142.0" layoutX="537.0" layoutY="8.0" stroke="#027270" strokeType="INSIDE" width="2.0" AnchorPane.rightAnchor="253.20000000000005" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#320606" height="2.0" layoutX="532.0" layoutY="149.0" stroke="#027270" strokeType="INSIDE" width="250.0" AnchorPane.rightAnchor="10.200000000000045" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="676.0" layoutX="22.0" layoutY="101.0" stroke="#f50000" strokeType="INSIDE" width="1.0" AnchorPane.bottomAnchor="1.3999999999999773" AnchorPane.topAnchor="101.0" />
                </children>
                <padding>
@@ -220,27 +240,6 @@
                </padding>
             </AnchorPane>
          </children>
-      </AnchorPane>
-   </right>
-   <center>
-      <AnchorPane prefHeight="778.0" prefWidth="272.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane layoutY="59.0" stylesheets="@style.css" AnchorPane.bottomAnchor="55.19999999999993" AnchorPane.leftAnchor="6.199999999999989" AnchorPane.rightAnchor="11.199999999999989" AnchorPane.topAnchor="59.0">
-               <children>
-                  <Label layoutX="1.0" prefWidth="150.0" text="Search Product" />
-                  <TextField fx:id="productSearc_Field" layoutY="20.0" prefHeight="20.0" prefWidth="255.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                  <TableView fx:id="productTable" layoutX="1.0" layoutY="56.0" prefHeight="603.0" prefWidth="278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="56.0">
-                     <columns>
-                        <TableColumn fx:id="productCodeColumn" minWidth="0.0" prefWidth="0.0" text="Code" />
-                        <TableColumn fx:id="productColumn" prefWidth="254.0" text="Products" />
-                     </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-         </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
       </AnchorPane>
    </center>
 </BorderPane>
