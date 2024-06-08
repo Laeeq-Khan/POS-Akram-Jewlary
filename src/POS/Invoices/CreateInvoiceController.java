@@ -26,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -48,7 +49,7 @@ public class CreateInvoiceController implements Initializable {
     Stage stage;
     @FXML   private TextField customerID_Field;
     @FXML    private TextField customerName_Field;
-    @FXML    private TextField contact_Field,customerBalance;
+    @FXML    private TextField contact_Field;
     @FXML    private TextField address_Field;
     @FXML    private TableView<CustomerTable> customerTable;
     @FXML    private TableColumn<CustomerTable, String> customerID_Column;
@@ -59,6 +60,7 @@ public class CreateInvoiceController implements Initializable {
     @FXML    private TextField unitPrice_Field,invoiceNumber;
     @FXML    private TextField totalUnits_Field;
     @FXML    private Label totalLable;
+    @FXML    private Label oldBalance_field;
     @FXML    private Button clearInvoiceButton,addButton,printButton,clearCustomerButton;
     @FXML    private TableView<ProductTableClass> productTable;
     @FXML    private TableColumn<ProductTableClass, String> productColumn, productCodeColumn;
@@ -77,6 +79,7 @@ public class CreateInvoiceController implements Initializable {
     private Connection con;
     private ObservableList<InvoiceTable_Class> invoiceList;
     private ObservableList<CustomerTable> customerList;
+    private String SelectedCustomerName;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -121,10 +124,13 @@ public class CreateInvoiceController implements Initializable {
         customerPay_Field.setText("0");
         customerID_Field.setText("");
         customerName_Field.setText("");
-        customerBalance.setText("");
+        oldBalance_field.setText("");
         address_Field.setText("");
         contact_Field.setText("");
         paidStatus = false; 
+        customerFieldEnable();
+        customerList.clear();
+        
     }
     private void events(){
          
@@ -267,6 +273,7 @@ public class CreateInvoiceController implements Initializable {
              if(evt.getCode() == KeyCode.ENTER){
                 totalUnits_Field.requestFocus();
             }
+             if(oldBalance_field.getText() == null) oldBalance_field.setText("0");
               printCommand(evt);
         });
         
@@ -472,6 +479,9 @@ public class CreateInvoiceController implements Initializable {
                 String address = rs.getString("address");
                 float balance = (float)rs.getFloat("bal");
                 
+                if(balance != 0)
+                balance = balance * -1;
+                
                 String parts[] = name.split(" ");
                 boolean found = false;
                 for (int i = 0; i < parts.length; i++) {
@@ -549,24 +559,28 @@ public class CreateInvoiceController implements Initializable {
     private void customerTableToField(){
          if(customerTable.getSelectionModel().getSelectedItem() == null) return;
          CustomerTable row = customerTable.getSelectionModel().getSelectedItem();
+         if(row == null)return;
          customerID_Field.setText(row.getId());
          customerName_Field.setText(row.getCustomerName());
          contact_Field.setText(row.getContact());
          address_Field.setText(row.getAddress());
-         customerBalance.setText(String.valueOf(row.getBalance()));
+         if(oldBalance_field.getText() == null || oldBalance_field.getText().length() <= 0) oldBalance_field.setText("0");
+        // SelectedCustomerBalance.setText(String.valueOf(row.getBalance()));
+         oldBalance_field.setText(String.valueOf(row.getBalance()));
          customerFieldDisable();
          changeTitle(customerName_Field.getText());
+         SelectedCustomerName = row.getCustomerName();
     }
     private void customerFieldDisable(){
-        customerName_Field.setDisable(true);
-        contact_Field.setDisable(true);
-        address_Field.setDisable(true);
-       changeTitle(customerName_Field.getText());
+        customerName_Field.setEditable(false);
+        contact_Field.setEditable(false);
+        address_Field.setEditable(false);
+        changeTitle(customerName_Field.getText());
     }
     private void customerFieldEnable(){
-        customerName_Field.setDisable(false);
-        contact_Field.setDisable(false);
-        address_Field.setDisable(false);
+        customerName_Field.setEditable(true);
+        contact_Field.setEditable(true);
+        address_Field.setEditable(true);
       //  System.out.println("Customer are "+customerList.size());
         customerTable.setItems(customerList);
         changeTitle(customerName_Field.getText());
@@ -753,7 +767,7 @@ public class CreateInvoiceController implements Initializable {
             a.show();
             return;
         }
-        customerID_Field.setText(String.valueOf(Database_Returns.getNextAutoIncrement("customer" , "customerId", 1)));
+        
         String customerId = getCustomerId();
         if(customerId.equalsIgnoreCase("null") || customerId == ""){
           Alert a = new Alert(Alert.AlertType.WARNING);
@@ -762,8 +776,25 @@ public class CreateInvoiceController implements Initializable {
           a.show();
           return;
         }
+        
+        String payingAmount = customerPay_Field.getText();
+        if(payingAmount.length() < 0){
+             Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setTitle("Paying amount is not valid");
+            a.setContentText("Please enter a valid paying amount");
+            a.show();
+            return;
+        }
+        double payAmount = Double.parseDouble(payingAmount);
+        double gTotal = Double.parseDouble(grandTotalLabel.getText());
+        double leftAmount = gTotal - payAmount;
+        if(oldBalance_field.getText() == null || oldBalance_field.getText().length() <= 0) oldBalance_field.setText("0");
+        double oldBalanceofCustomer = Double.parseDouble(oldBalance_field.getText());
+        double oldBalance = Math.abs(leftAmount) +  Math.abs(oldBalanceofCustomer);
+        oldBalance = oldBalance * -1;
+        
         try {
-            PreparedStatement stm  = con.prepareStatement("insert into invoice(date , displayDate , customerId, time) values (?,?,?,?)");
+            PreparedStatement stm  = con.prepareStatement("insert into invoice(date , displayDate , customerId, time, paid, balance, netbalance) values (?,?,?,?,?,?,?)");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
             LocalDateTime now = LocalDateTime.now();  
             String datee  = String.valueOf(dtf.format(now));
@@ -771,6 +802,9 @@ public class CreateInvoiceController implements Initializable {
             stm.setString(2, datee);
             stm.setString(3, customerId);
             stm.setString(4, String.valueOf(java.time.LocalTime.now()));
+            stm.setDouble(5, payAmount);
+            stm.setDouble(6, leftAmount);
+            stm.setDouble(7, oldBalance );
             stm.executeUpdate();
             
            String query = "select max(invoiceNumber) as maxnumber from invoice";
@@ -808,7 +842,7 @@ public class CreateInvoiceController implements Initializable {
                 e.printStackTrace();
             }
             
-            String balancString = customerBalance.getText();
+            String balancString = oldBalance_field.getText();
             String paidString = customerPay_Field.getText();
             if( balancString == null ||  balancString == "" || balancString.length() ==0){
                 balancString = "0";
@@ -819,7 +853,8 @@ public class CreateInvoiceController implements Initializable {
            
             float balnce= Float.parseFloat(balancString);
             float paid = Float.parseFloat(paidString);
-            new InvoicePrint(invoiceList,paid,balnce , grandTotalLabel.getText(), Validation.Reversing_Date(datee), invoiceNumber.getText(), customerName_Field.getText(), contact_Field.getText(), address_Field.getText());
+               
+            new InvoicePrint(invoiceList, oldBalance_field.getText(),paid,balnce , grandTotalLabel.getText(), Validation.Reversing_Date(datee), invoiceNumber.getText(), customerName_Field.getText(), contact_Field.getText(), address_Field.getText());
             clear();
             invoiceNumber.setText(String.valueOf(Database_Returns.getNextAutoIncrement("invoice" , "invoiceNumber", 1000)));
         } catch (Exception e) {
@@ -828,7 +863,6 @@ public class CreateInvoiceController implements Initializable {
         
     }
     private String getCustomerId(){
-        customerID_Field.setText(String.valueOf(Database_Returns.getNextAutoIncrement("customer" , "customerId", 1)));
         String customerId = customerID_Field.getText();
         String customerName = customerName_Field.getText();
         String contact  = contact_Field.getText();
@@ -846,6 +880,7 @@ public class CreateInvoiceController implements Initializable {
         }
         if(newEntry){
             try {
+                customerID_Field.setText(String.valueOf(Database_Returns.getNextAutoIncrement("customer" , "customerId", 1)));
                 PreparedStatement stm = con.prepareStatement("insert into customer(name,contact,address) values(?,?,?)");
                 stm.setString(1, customerName);
                 stm.setString(2, contact);

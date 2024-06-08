@@ -77,7 +77,7 @@ public class Sale_ReportController implements Initializable {
           java.sql.Date sqlDateFrom = java.sql.Date.valueOf(dateFrom);
           java.sql.Date sqlDateTo = java.sql.Date.valueOf(dateTo);
 
-          float total = 0;
+          double total = 0;
           try {
              String query = "SELECT SUM(invoicedetails.total) AS abc, invoice.time, customer.name, " +
                             "invoice.invoiceNumber, invoice.customerId, invoice.displayDate " +
@@ -106,7 +106,8 @@ public class Sale_ReportController implements Initializable {
               }
 
               reportTable.setItems(list);
-              totalAmount.setText(String.valueOf(total));
+              String formattedValue = String.format("%.1f", total);
+              totalAmount.setText(String.valueOf(formattedValue));
           } catch (Exception e) {
               e.printStackTrace();
           }

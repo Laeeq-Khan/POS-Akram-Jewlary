@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Projects/POS-Akram-Jewlary/src/POS/Invoices/EditInvoicePrint.java</file>
+            <file>file:/D:/Projects/POS-Akram-Jewlary/src/POS/Invoices/Sale_ReportController.java</file>
+            <file>file:/D:/Projects/POS-Akram-Jewlary/src/POS/Invoices/EditOldInvoice_Controller.java</file>
+            <file>file:/D:/Projects/POS-Akram-Jewlary/src/POS/Home/DriverClass.java</file>
+            <file>file:/D:/Projects/POS-Akram-Jewlary/src/POS/Invoices/CreateInvoiceController.java</file>
+        </group>
     </open-files>
 </project-private>

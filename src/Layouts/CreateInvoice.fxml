@@ -200,7 +200,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="invoiceNumber" editable="false" layoutX="65.0" layoutY="40.0" prefHeight="22.0" prefWidth="435.0" promptText="00001">
+                  <TextField fx:id="invoiceNumber" editable="false" layoutX="65.0" layoutY="40.0" prefHeight="22.0" prefWidth="296.0" promptText="00001">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -231,9 +231,19 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#320606" height="142.0" layoutX="537.0" layoutY="8.0" stroke="#027270" strokeType="INSIDE" width="2.0" AnchorPane.rightAnchor="253.20000000000005" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#320606" height="142.0" layoutX="601.0" layoutY="7.0" stroke="#027270" strokeType="INSIDE" width="2.0" AnchorPane.rightAnchor="264.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#320606" height="2.0" layoutX="532.0" layoutY="149.0" stroke="#027270" strokeType="INSIDE" width="250.0" AnchorPane.rightAnchor="10.200000000000045" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="676.0" layoutX="22.0" layoutY="101.0" stroke="#f50000" strokeType="INSIDE" width="1.0" AnchorPane.bottomAnchor="1.3999999999999773" AnchorPane.topAnchor="101.0" />
+                  <Label fx:id="oldBalance_field" alignment="CENTER" layoutX="383.0" layoutY="38.0" prefHeight="47.0" prefWidth="210.0" style="-fx-border-width: 1; -fx-border-color: red;" text="0" textFill="#0a14cd" AnchorPane.rightAnchor="274.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="invoiceBalance_Field11" alignment="CENTER" layoutX="370.0" layoutY="10.0" prefHeight="20.0" prefWidth="226.0" text="Old Balance" textFill="#4509dd" AnchorPane.rightAnchor="271.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children>
                <padding>
                   <Insets right="5.0" />

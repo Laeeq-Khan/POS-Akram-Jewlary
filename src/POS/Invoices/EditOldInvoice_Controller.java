@@ -58,8 +58,8 @@ public class EditOldInvoice_Controller  implements Initializable {
     @FXML    private TableView<SearchTableClass> invoiceSearchTable;
     @FXML    private TableColumn<SearchTableClass, String> invoiceNumber_Col;
     @FXML    private TableColumn<SearchTableClass, String> customer_col;
-    @FXML    private TableColumn<SearchTableClass, String> date_col,customerID_col;
-    @FXML    private TableColumn<SearchTableClass, Float> amout_Col;
+    @FXML    private TableColumn<SearchTableClass, String> date_col,customerIdCol;
+    @FXML    private TableColumn<SearchTableClass, Double> gTotalColumn, paidAmount_col, balanceCol;
     @FXML    private Label customerName_Label;
     @FXML    private Label customerContact_Label;
     @FXML    private Label address_Label;
@@ -68,7 +68,7 @@ public class EditOldInvoice_Controller  implements Initializable {
     
     private Connection con;
     private ObservableList<InvoiceTable_Class_Edit> invoiceList;
-    private float oldBalance;
+    private double oldBalance;
     
     
     @Override
@@ -91,7 +91,9 @@ public class EditOldInvoice_Controller  implements Initializable {
             }
         });
         searchButton.setOnAction(evt->{
+            searchButton.setText("Plesae Wait Searching....");
             searchInvioceInDatabase();
+            searchButton.setText("Seaerc Invoice");
         });
         
         invoiceSearchTable.setOnKeyReleased(evt->{
@@ -153,8 +155,11 @@ public class EditOldInvoice_Controller  implements Initializable {
         invoiceNumber_Col.setCellValueFactory(new PropertyValueFactory<SearchTableClass , String>("invoice"));
         customer_col.setCellValueFactory(new PropertyValueFactory<SearchTableClass , String>("name"));
         date_col.setCellValueFactory(new PropertyValueFactory<SearchTableClass , String>("date"));
-        amout_Col.setCellValueFactory(new PropertyValueFactory<SearchTableClass , Float>("amount"));
-        customerID_col.setCellValueFactory(new PropertyValueFactory<SearchTableClass, String>("customerId"));
+        gTotalColumn.setCellValueFactory(new PropertyValueFactory<SearchTableClass , Double>("amount"));
+        paidAmount_col.setCellValueFactory(new PropertyValueFactory<SearchTableClass, Double>("paid"));
+        balanceCol.setCellValueFactory(new PropertyValueFactory<SearchTableClass, Double>("balance"));
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<SearchTableClass, String>(""));
+        
        
         
         invoiceSrColumn.setCellValueFactory(new PropertyValueFactory<InvoiceTable_Class_Edit , Integer>("sr"));
@@ -244,7 +249,7 @@ public class EditOldInvoice_Controller  implements Initializable {
             ResultSet rs  = null;
             
             if(Validation.Only_Number_Color(search, 10)){
-                  stm = con.prepareStatement("select sum(invoicedetails.total) as 'abc', invoice.invoiceNumber,invoice.customerId,  invoice.displayDate from invoice inner join invoicedetails on "
+                  stm = con.prepareStatement("select sum(invoicedetails.total) as 'abc', invoice.paid as paidinvoice, invoice.balance as tbalance, invoice.netbalance as netbalance, invoice.invoiceNumber,invoice.customerId,  invoice.displayDate from invoice inner join invoicedetails on "
                            + "invoice.invoiceNumber = invoicedetails.invoicenumber where invoice.invoiceNumber like '%"+search+"%' GROUP BY invoice.invoiceNumber ");
                    rs = stm.executeQuery();
                    while(rs.next()){
@@ -257,9 +262,15 @@ public class EditOldInvoice_Controller  implements Initializable {
                        String tt = rs.getString("abc");
                        if(tt == null || tt.equalsIgnoreCase("null")) tt="0";
                        float total =(float) Float.parseFloat(tt);
+                       Double paid = rs.getDouble("paidinvoice");
+                       String ba = Database_Returns.Code_Return("customer", "customerId", cstmId, "balance");
+                       if(ba == null) ba = "";
+                       Double balance = Double.parseDouble(ba);
+                       if(balance  != 0) balance = balance  * -1;
+                       
                        String customerName = Database_Returns.Code_Return("customer", "customerId", cstmId, "name");
                        if(customerName.equalsIgnoreCase("not exsists"))customerName=" ";
-                       searchList.add(new SearchTableClass(number, customerName, displayDate, cstmId, total));
+                       searchList.add(new SearchTableClass(number, customerName, displayDate,  total, paid,  balance, cstmId));     
 
                    }
                 invoiceSearchTable.setItems(searchList);
@@ -275,7 +286,7 @@ public class EditOldInvoice_Controller  implements Initializable {
                  search = dateStandard(search);
                  if(search.equalsIgnoreCase("Invalid"))return;
                   int date = Validation.date_to_int(search);
-                  stm = con.prepareStatement("select  *, sum(invoicedetails.total) as 'abc' from invoice inner join invoicedetails on "
+                  stm = con.prepareStatement("select  *, sum(invoicedetails.total) as 'abc', invoice.paid as paidinvoice, invoice.balance as tbalance, invoice.netbalance as netbalance from invoice inner join invoicedetails on "
                            + "invoice.invoiceNumber = invoicedetails.invoicenumber  where invoice.date=?  GROUP BY invoice.invoiceNumber");
                   stm.setInt(1, date);
                   rs = stm.executeQuery();
@@ -291,7 +302,12 @@ public class EditOldInvoice_Controller  implements Initializable {
                        float total =(float) Float.parseFloat(tt);
                        String customerName = Database_Returns.Code_Return("customer", "customerId", cstmId, "name");
                        if(customerName.equalsIgnoreCase("not exsists"))customerName=" ";
-                       searchList.add(new SearchTableClass(number, customerName, displayDate, cstmId, total));
+                       Double paid = rs.getDouble("paidinvoice");
+                       String ba = Database_Returns.Code_Return("customer", "customerId", cstmId, "balance");
+                       if(ba == null) ba = "";
+                       Double balance = Double.parseDouble(ba);
+                       if(balance  != 0) balance = balance  * -1;
+                       searchList.add(new SearchTableClass(number, customerName, displayDate,  total, paid,  balance, cstmId));     
                    }
                 invoiceSearchTable.setItems(searchList);
                 invoiceNumber_Col.setSortType(TableColumn.SortType.DESCENDING);
@@ -306,7 +322,7 @@ public class EditOldInvoice_Controller  implements Initializable {
                  idList.add(rs.getString("customerId"));
             }
             for (int i = 0; i < idList.size(); i++) {
-                 stm = con.prepareStatement("select sum(invoicedetails.total) as 'abc', invoice.invoiceNumber,invoice.customerId,  invoice.displayDate from invoice inner join invoicedetails on "
+                 stm = con.prepareStatement("select sum(invoicedetails.total) as 'abc', invoice.paid as paidinvoice, invoice.balance as tbalance, invoice.netbalance as netbalance, invoice.invoiceNumber,invoice.customerId,  invoice.displayDate from invoice inner join invoicedetails on "
                     + "invoice.invoiceNumber = invoicedetails.invoicenumber where invoice.customerId = '"+idList.get(i)+"' GROUP BY invoice.invoiceNumber ");
                  rs = stm.executeQuery();
                  while(rs.next()){
@@ -321,7 +337,12 @@ public class EditOldInvoice_Controller  implements Initializable {
                         float total =(float) Float.parseFloat(tt);
                         String customerName = Database_Returns.Code_Return("customer", "customerId", cstmId, "name");
                         if(customerName.equalsIgnoreCase("not exsists"))customerName=" ";
-                        searchList.add(new SearchTableClass(number, customerName, displayDate, idList.get(i), total));
+                        Double paid = rs.getDouble("paidinvoice");
+                        String ba = Database_Returns.Code_Return("customer", "customerId", cstmId, "balance");
+                        if(ba == null) ba = "";
+                        Double balance = Double.parseDouble(ba);
+                        if(balance  != 0) balance = balance  * -1;
+                        searchList.add(new SearchTableClass(number, customerName, displayDate,  total, paid,  balance, cstmId));     
                  } 
             }
               invoiceSearchTable.setItems(searchList);
@@ -334,14 +355,17 @@ public class EditOldInvoice_Controller  implements Initializable {
     }
     public class SearchTableClass{
         String invoice, name,date,customerId;
-        float amount;
+        double amount;
+        double paid, balance;
 
-        public SearchTableClass(String invoice, String name, String date, String customerId, float amount) {
+        public SearchTableClass(String invoice, String name, String date,  double amount, double paid, double balance, String customerId) {
             this.invoice = invoice;
             this.name = name;
             this.date = date;
             this.customerId = customerId;
             this.amount = amount;
+            this.paid = paid;
+            this.balance = balance;
         }
 
         public String getCustomerId() {
@@ -350,6 +374,30 @@ public class EditOldInvoice_Controller  implements Initializable {
 
         public void setCustomerId(String customerId) {
             this.customerId = customerId;
+        }
+
+        public double getAmount() {
+            return amount;
+        }
+
+        public void setAmount(double amount) {
+            this.amount = amount;
+        }
+
+        public double getPaid() {
+            return paid;
+        }
+
+        public void setPaid(double paid) {
+            this.paid = paid;
+        }
+
+        public double getBalance() {
+            return balance;
+        }
+
+        public void setBalance(double balance) {
+            this.balance = balance;
         }
 
             
@@ -378,13 +426,7 @@ public class EditOldInvoice_Controller  implements Initializable {
             this.date = date;
         }
 
-        public float getAmount() {
-            return amount;
-        }
-
-        public void setAmount(float amount) {
-            this.amount = amount;
-        }
+      
         
     }//end of class
     
@@ -396,7 +438,7 @@ public class EditOldInvoice_Controller  implements Initializable {
             String invoiceNum = row.getInvoice();
             String customerId = row.getCustomerId();
             String customerName = row.getName();
-            float amount = row.getAmount();
+            double amount = row.getAmount();
             String dateD = row.getDate();
             oldBalance = row.getAmount();
             
@@ -540,11 +582,11 @@ public class EditOldInvoice_Controller  implements Initializable {
             }
             
             try {
-                float newAmount =0;
-                float pay = Float.parseFloat(grandTotalLabel.getText());
+                double newAmount =0;
+                double pay = Float.parseFloat(grandTotalLabel.getText());
                 newAmount =   pay-oldBalance;
                 stm = con.prepareStatement("update customer set balance = balance + ? where customerId=?");
-                stm.setFloat(1, newAmount);
+                stm.setDouble(1, newAmount);
                 stm.setString(2, customerID_Label.getText());
                 stm.executeUpdate();
             } catch (Exception e) {

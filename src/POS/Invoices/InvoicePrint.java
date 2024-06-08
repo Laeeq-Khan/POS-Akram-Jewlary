@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 
 public class InvoicePrint implements Printable, ActionListener {
@@ -223,7 +224,7 @@ String[] textLines;
                 g.drawString(paid+"/-", x+250, y-5+lineHeight);
                 
                 g.drawString("Previous Balance :", x+162, y-5+lineHeight+lineHeight);
-                g.drawString(balance+"/-", x+250, y-5+lineHeight+lineHeight);
+                g.drawString(previousBalance+"/-", x+250, y-5+lineHeight+lineHeight);
                 
                 g.drawString("Net Balance :", x+162, y-5+lineHeight+lineHeight+lineHeight);
                 g.drawString(netBalance+"/-", x+250, y-5+lineHeight+lineHeight+lineHeight);
@@ -245,8 +246,10 @@ public void actionPerformed(ActionEvent e) {
 float balance;
 float paid;
 String customerId;
-public InvoicePrint(ObservableList<InvoiceTable_Class> invoiceList,  float paid ,float balance, String totalBill , String date , String invoice , String soldTo , String contact, String address){
+String previousBalance;
+public InvoicePrint(ObservableList<InvoiceTable_Class> invoiceList, String previousBalance,  float paid ,float balance, String totalBill , String date , String invoice , String soldTo , String contact, String address){
 
+    this.previousBalance = previousBalance;
    this.paid = paid;
     this.balance = balance;
     this.soldTo  = soldTo;
