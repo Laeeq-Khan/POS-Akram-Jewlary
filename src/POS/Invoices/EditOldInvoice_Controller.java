@@ -300,7 +300,7 @@ public class EditOldInvoice_Controller  implements Initializable {
                }
             
                
-            stm = con.prepareStatement("select customerId from customer where name = '"+search+"'");
+            stm = con.prepareStatement("select customerId from customer where name like '%"+search+"%'");
             rs = stm.executeQuery();
             while(rs.next()){
                  idList.add(rs.getString("customerId"));

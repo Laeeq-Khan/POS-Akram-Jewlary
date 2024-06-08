@@ -68,41 +68,50 @@ public class Sale_ReportController implements Initializable {
     }
     
     
-    private void searchRecords(){
-        LocalDate dateFrom = fromDate.getValue();
-        LocalDate toFrom  = toDate.getValue();
-        if(dateFrom == null || toFrom==null)return;
-        
-        int dateFromInt =Validation.date_to_int(dateFrom.toString());
-        int dateToInt = Validation.date_to_int(toFrom.toString());
-        float total = 0;
-        try {
-            String query  = "select sum(invoicedetails.total) as 'abc', invoice.time ,customer.name, invoice.invoiceNumber,invoice.customerId,  invoice.displayDate from invoice inner join invoicedetails on "
-                    + "invoice.invoiceNumber = invoicedetails.invoicenumber inner join customer on invoice.customerId = customer.customerId where invoice.date >= ? and invoice.date <= ?  GROUP BY invoice.invoiceNumber";
-            PreparedStatement stm = DB_Connection.getConnection().prepareStatement(query);
-            stm.setInt(1, dateFromInt);
-            stm.setInt(2, dateToInt);
-            ResultSet rs  = stm.executeQuery();
-            list.clear();
-            while(rs.next()){
-                String customerName = rs.getString("customer.name");
-                String customerId  = rs.getString("invoice.customerId");
-                String displayDate = rs.getString("invoice.displayDate");
-                displayDate =  Validation.Reversing_Date(displayDate);
-                String time = rs.getString("invoice.time");
-                float amount = rs.getFloat("abc");
-                total +=amount;
-                String invoice = rs.getString("invoice.invoiceNumber");
-                list.add(new ReportTableClass(customerId, customerName, invoice, displayDate, time, amount));
-            }
-            reportTable.setItems(list);
-            totalAmount.setText(String.valueOf(total));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-    }
-    
+        private void searchRecords(){
+          LocalDate dateFrom = fromDate.getValue();
+          LocalDate dateTo  = toDate.getValue();
+          if(dateFrom == null || dateTo == null) return;
+
+          // Convert LocalDate to java.sql.Date
+          java.sql.Date sqlDateFrom = java.sql.Date.valueOf(dateFrom);
+          java.sql.Date sqlDateTo = java.sql.Date.valueOf(dateTo);
+
+          float total = 0;
+          try {
+             String query = "SELECT SUM(invoicedetails.total) AS abc, invoice.time, customer.name, " +
+                            "invoice.invoiceNumber, invoice.customerId, invoice.displayDate " +
+                            "FROM invoice " +
+                            "INNER JOIN invoicedetails ON invoice.invoiceNumber = invoicedetails.invoicenumber " +
+                            "INNER JOIN customer ON invoice.customerId = customer.customerId " +
+                            "WHERE invoice.displayDate  >= ? AND invoice.displayDate <= ? " +
+                            "GROUP BY invoice.invoiceNumber";
+
+              PreparedStatement stm = DB_Connection.getConnection().prepareStatement(query);
+              stm.setDate(1, sqlDateFrom);
+              stm.setDate(2, sqlDateTo);
+              ResultSet rs = stm.executeQuery();
+
+              list.clear();
+              while (rs.next()) {
+                  String customerName = rs.getString("name"); // Alias or column name should be used directly
+                  String customerId = rs.getString("customerId");
+                  String displayDate = rs.getString("displayDate");
+                  displayDate = Validation.Reversing_Date(displayDate);
+                  String time = rs.getString("time");
+                  float amount = rs.getFloat("abc");
+                  total += amount;
+                  String invoice = rs.getString("invoiceNumber");
+                  list.add(new ReportTableClass(customerId, customerName, invoice, displayDate, time, amount));
+              }
+
+              reportTable.setItems(list);
+              totalAmount.setText(String.valueOf(total));
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+      }
+
     private void initTable(){
         customerID_col.setCellValueFactory(new PropertyValueFactory<ReportTableClass, String>("customerId"));
         name_col.setCellValueFactory(new PropertyValueFactory<ReportTableClass, String>("customerName"));
