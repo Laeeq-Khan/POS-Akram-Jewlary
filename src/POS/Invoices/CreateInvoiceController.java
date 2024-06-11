@@ -113,7 +113,8 @@ public class CreateInvoiceController implements Initializable {
      
     private void clear(){
         invoiceNumber.setText(String.valueOf(Database_Returns.getNextAutoIncrement("invoice" , "invoiceNumber", 1000)));
-        invoiceList.clear();
+        customerID_Field.setText(String.valueOf(Database_Returns.getNextAutoIncrement("customer" , "customerId", 1)));
+        if(invoiceList != null)invoiceList.clear();
         productCode_Field.setText("");
         productName_Field.setText("");
         totalUnits_Field.setText("");
@@ -122,15 +123,15 @@ public class CreateInvoiceController implements Initializable {
         grandTotalLabel.setText("0");
         invoiceBalance_Field.setText("0");
         customerPay_Field.setText("0");
-        customerID_Field.setText("");
         customerName_Field.setText("");
         oldBalance_field.setText("");
         address_Field.setText("");
         contact_Field.setText("");
         paidStatus = false; 
-        customerFieldEnable();
-        customerList.clear();
         
+        if(customerList != null)customerList.clear();
+        oldBalance_field.setText("0");
+        customerFieldEnable();
     }
     private void events(){
          
@@ -788,10 +789,11 @@ public class CreateInvoiceController implements Initializable {
         double payAmount = Double.parseDouble(payingAmount);
         double gTotal = Double.parseDouble(grandTotalLabel.getText());
         double leftAmount = gTotal - payAmount;
-        if(oldBalance_field.getText() == null || oldBalance_field.getText().length() <= 0) oldBalance_field.setText("0");
+        if(oldBalance_field.getText() == null || oldBalance_field.getText().length() <= 0 || oldBalance_field.getText() == "") oldBalance_field.setText("0");
         double oldBalanceofCustomer = Double.parseDouble(oldBalance_field.getText());
         double oldBalance = Math.abs(leftAmount) +  Math.abs(oldBalanceofCustomer);
-        oldBalance = oldBalance * -1;
+        if(oldBalance != 0) oldBalance = oldBalance * -1;
+        
         
         try {
             PreparedStatement stm  = con.prepareStatement("insert into invoice(date , displayDate , customerId, time, paid, balance, netbalance) values (?,?,?,?,?,?,?)");
@@ -806,6 +808,7 @@ public class CreateInvoiceController implements Initializable {
             stm.setDouble(6, leftAmount);
             stm.setDouble(7, oldBalance );
             stm.executeUpdate();
+            
             
            String query = "select max(invoiceNumber) as maxnumber from invoice";
            PreparedStatement stm2 = con.prepareStatement(query);
@@ -857,7 +860,10 @@ public class CreateInvoiceController implements Initializable {
             new InvoicePrint(invoiceList, oldBalance_field.getText(),paid,balnce , grandTotalLabel.getText(), Validation.Reversing_Date(datee), invoiceNumber.getText(), customerName_Field.getText(), contact_Field.getText(), address_Field.getText());
             clear();
             invoiceNumber.setText(String.valueOf(Database_Returns.getNextAutoIncrement("invoice" , "invoiceNumber", 1000)));
-        } catch (Exception e) {
+        }  catch (SQLException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         
