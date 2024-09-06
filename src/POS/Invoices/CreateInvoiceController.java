@@ -770,6 +770,8 @@ public class CreateInvoiceController implements Initializable {
         }
         
         String customerId = getCustomerId();
+        
+          
         if(customerId.equalsIgnoreCase("null") || customerId == ""){
           Alert a = new Alert(Alert.AlertType.WARNING);
           a.setTitle("Customer is not selected");
@@ -875,10 +877,11 @@ public class CreateInvoiceController implements Initializable {
         String address = address_Field.getText();
         boolean newEntry = true;
         try {
-            PreparedStatement stm = con.prepareStatement("select customerId from customer where customerId =? ");
-            stm.setString(1, customerId);
+            PreparedStatement stm = con.prepareStatement("SELECT * FROM customer WHERE name = ? LIMIT 1 ");
+            stm.setString(1, customerName);
             ResultSet rs = stm.executeQuery();
             if(rs.next()){
+                customerID_Field.setText(rs.getString("customerId"));
                 newEntry = false;
             }
         } catch (SQLException e) {
@@ -893,13 +896,14 @@ public class CreateInvoiceController implements Initializable {
                 stm.setString(3, address);
                 stm.executeUpdate();
                 
+                
             } catch (SQLException e) {
                 e.printStackTrace();
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
-        return customerId;
+        return customerID_Field.getText();
     }
     private void printCommand(KeyEvent evt){
         if(evt.getCode() == KeyCode.P && evt.isControlDown()){

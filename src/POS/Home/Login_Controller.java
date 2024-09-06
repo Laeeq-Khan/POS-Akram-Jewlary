@@ -95,7 +95,7 @@ public class Login_Controller implements Initializable {
                 stage = stag;
                // stag.initStyle(StageStyle.UNDECORATED);
                 stag.setScene(new Scene(p));
-                stag.setTitle("Akram Jewellery Shop");
+                stag.setTitle("Akram Jewellery Shop (V 24.9)");
                 stag.getIcons().add(new Image("/Resource/softlogo.png"));
                // stag.setFullScreen(true);
                
